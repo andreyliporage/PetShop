@@ -9,6 +9,7 @@ import { DataService } from 'src/app/services/data.service';
 export class LoginPageComponent implements OnInit {
 
   public form: FormGroup = new FormGroup({});
+  public busy: boolean = false;
 
   constructor(private service: DataService, private formBuilder: FormBuilder) {
   }
@@ -29,17 +30,27 @@ export class LoginPageComponent implements OnInit {
 
     const token = localStorage.getItem('petshop.token');
     if (token) {
+      this.busy = true;
       this.service.refreshToken().subscribe((data: any) => {
+        this.busy = false;
         localStorage.setItem('petshop.token', data.token),
-        (err : any) => localStorage.clear();
+        (err : any) => {
+          localStorage.clear();
+          this.busy = false;
+        }
       })
     }
   }
 
   submit() {
+    this.busy = true;
     this.service.authenticate(this.form.value).subscribe((data: any) => {
+      this.busy = false;
       localStorage.setItem('petshop.token', data.token),
-      (err : any) => console.log(err)
+      (err : any) => {
+        console.log(err);
+        this.busy = false;
+      }
     })
   }
 

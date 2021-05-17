@@ -14,6 +14,7 @@ import { LoginPageComponent } from './pages/account/login-page/login-page.compon
 import { FrameComponent } from './pages/master/frame.component';
 import { ProductCardComponent } from './components/store/product-card/product-card.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { LoadingComponent } from './components/shared/loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     ProductsPageComponent,
     CartPageComponent,
     FrameComponent,
-    ProductCardComponent
+    ProductCardComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,
