@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Product } from '../models/Product';
 
@@ -7,9 +7,25 @@ import { Product } from '../models/Product';
 })
 export class DataService {
 
+  public url = 'http://localhost:3000/v1';
+
   constructor(private http: HttpClient) { }
 
+  public composeHeaders() {
+    const token = localStorage.getItem('petshop.token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return headers;
+  }
+
   getProducts() {
-    return this.http.get<Product[]>('http://localhost:3000/v1/products');
+    return this.http.get<Product[]>(`${this.url}/products`);
+  }
+
+  authenticate(data: any) {
+    return this.http.post(`${this.url}/accounts/authenticate`, data);
+  }
+
+  refreshToken() {
+    return this.http.post(`${this.url}/accounts/refresh-token`, null, { headers: this.composeHeaders() });
   }
 }
