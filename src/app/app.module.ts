@@ -15,9 +15,11 @@ import { FrameComponent } from './pages/master/frame.component';
 import { ProductCardComponent } from './components/store/product-card/product-card.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoadingComponent } from './components/shared/loading/loading.component';
+import { MaskDirective } from './directives/mask.directive';
 
 @NgModule({
   declarations: [
+    MaskDirective,
     AppComponent,
     NavbarComponent,
     LoginPageComponent,
