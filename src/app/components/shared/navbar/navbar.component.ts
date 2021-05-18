@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from 'src/app/models/user';
+import { Security } from 'src/app/utils/security.util';
 
 @Component({
   selector: 'app-navbar',
@@ -6,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
+  public user: User | null = null;
+
   constructor() { }
 
   ngOnInit(): void {
+    this.user = Security.getUser();
   }
 
 }
