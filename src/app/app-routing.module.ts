@@ -7,6 +7,7 @@ import { SignUpPageComponent } from './pages/account/sign-up-page/sign-up-page.c
 import { FrameComponent } from './pages/master/frame.component';
 import { CartPageComponent } from './pages/store/cart-page/cart-page.component';
 import { ProductsPageComponent } from './pages/store/products-page/products-page.component';
+import { AuthService } from './services/auth.service';
 
 const routes: Routes = [
   {
@@ -14,7 +15,7 @@ const routes: Routes = [
     component: FrameComponent,
     children: [
       { path: '', component: ProductsPageComponent },
-      { path: 'cart', component: CartPageComponent }
+      { path: 'cart', component: CartPageComponent, canActivate: [AuthService] }
     ]
   },
   {
